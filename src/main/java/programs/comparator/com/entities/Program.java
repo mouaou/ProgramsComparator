@@ -16,7 +16,7 @@ public class Program {
     private String name;
     private Long size;
     private Long dateCreation;
-    private String md5Code;
+    private String SHACode;
     private Boolean newVersion;
 
 }

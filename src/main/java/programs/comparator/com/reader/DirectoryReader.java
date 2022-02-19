@@ -1,13 +1,12 @@
 package programs.comparator.com.reader;
 
+import programs.comparator.com.entities.ListPrograms;
 import programs.comparator.com.entities.Program;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,10 +38,11 @@ public class DirectoryReader {
 
     }
     //build list of new and old programs
-    public void buildListPrograms(Path path) throws IOException {
+    public ListPrograms buildListPrograms(Path path) throws IOException {
         List<Path> listDirectories = getListDirectories(path);
         List<Program> listNewPrograms = new ArrayList<>();
         List<Program> listOldPrograms = new ArrayList<>();
+        ListPrograms Lists = new ListPrograms();
 
         listDirectories.forEach(dir->{
             try {
@@ -51,8 +51,8 @@ public class DirectoryReader {
                     Program program = new Program();
                     program.setName(file.getFileName().toString());
                     program.setSize(file.toFile().length());
-                    String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(new FileInputStream(file.toFile()));
-                    program.setMd5Code(md5);
+                    String SHA = org.apache.commons.codec.digest.DigestUtils.sha256Hex(new FileInputStream(file.toFile()));
+                    program.setSHACode(SHA);
                     if(dir.endsWith("NewPrograms")){
                         program.setNewVersion(true);
                         listNewPrograms.add(program);
@@ -65,10 +65,14 @@ public class DirectoryReader {
                 e.printStackTrace();
             }
         });
-        System.out.println("*****list new programs********");
-        listNewPrograms.forEach(program1 -> System.out.println(""+program1.toString()+""));
-        System.out.println("*****list old programs********");
-        listOldPrograms.forEach(program1 -> System.out.println(""+program1.toString()+""));
+
+        Lists.setNew(listNewPrograms);
+        Lists.setOld(listOldPrograms);
+        return Lists;
+        // System.out.println("*****list new programs********");
+       //  listNewPrograms.forEach(program1 -> System.out.println(""+program1.toString()+""));
+      //   System.out.println("*****list old programs********");
+      //  listOldPrograms.forEach(program1 -> System.out.println(""+program1.toString()+""));
     }
 
 }
