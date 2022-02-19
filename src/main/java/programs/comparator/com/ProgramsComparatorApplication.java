@@ -15,8 +15,9 @@ public class ProgramsComparatorApplication {
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(ProgramsComparatorApplication.class, args);
 		DirectoryReader directoryReader = new DirectoryReader();
-		Path path = Paths.get("D:/sopra/programs");
-		directoryReader.buildListPrograms(path);
+		Path pathDirectory = Paths.get("D:/sopra/programs");
+		Path pathComparaisonExcel = Paths.get("D:/sopra/programs/comparaisonPrograms.xlsx");
+		directoryReader.generateExcelComparaisonFile(pathDirectory, pathComparaisonExcel);
 
 
 
