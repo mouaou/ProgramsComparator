@@ -1,9 +1,11 @@
 package programs.comparator.com;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import programs.comparator.com.reader.DirectoryReader;
+import org.springframework.stereotype.Component;
+import programs.comparator.com.writer.IFileWriter;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -14,13 +16,18 @@ public class ProgramsComparatorApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(ProgramsComparatorApplication.class, args);
-		DirectoryReader directoryReader = new DirectoryReader();
-		Path pathDirectory = Paths.get("D:/sopra/programs");
-		Path pathComparaisonExcel = Paths.get("D:/sopra/programs/comparaisonPrograms.xlsx");
-		directoryReader.generateExcelComparaisonFile(pathDirectory, pathComparaisonExcel);
+	}
+	@Component
+	public class CommandLineAppStartupRunner implements CommandLineRunner {
+		@Autowired
+		private  IFileWriter iFileWriter;
+		private  Path pathDirectory = Paths.get("c:/sopra/programs");
+		private  Path pathComparaisonExcel = Paths.get("c:/sopra/programs/comparaisonPrograms.xlsx");
 
-
-
+		@Override
+		public void run(String...args) throws Exception {
+			iFileWriter.generateExcelComparaisonFile(pathDirectory, pathComparaisonExcel);
+		}
 	}
 
 }
