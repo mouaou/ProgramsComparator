@@ -5,17 +5,18 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 @NoArgsConstructor
 @Data
-@ToString(exclude = "id")
+@ToString
 public class Program {
 
-    private Long id;
+    @ToString.Exclude private Integer id;
     private String name;
-    private Long size;
-    private Long dateCreation;
+    private Integer size;
+    @ToString.Exclude private Long dateCreation;
     private String md5Code;
     private Boolean newVersion;
 
