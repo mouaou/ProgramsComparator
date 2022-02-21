@@ -21,8 +21,8 @@ public class ProgramsComparatorApplication {
 	public class CommandLineAppStartupRunner implements CommandLineRunner {
 		@Autowired
 		private  IFileWriter iFileWriter;
-		private  Path pathDirectory = Paths.get("c:/sopra/programs");
-		private  Path pathComparaisonExcel = Paths.get("c:/sopra/programs/comparaisonPrograms.xlsx");
+		private  Path pathDirectory = Paths.get("C:\\Users\\zelmahi\\Desktop\\Patch_SGMA\\PROD_SGMA\\TestProject");
+		private  Path pathComparaisonExcel = Paths.get("C:\\Users\\zelmahi\\Desktop\\Patch_SGMA\\PROD_SGMA\\comparaisonPrograms.xlsx");
 
 		@Override
 		public void run(String...args) throws Exception {
