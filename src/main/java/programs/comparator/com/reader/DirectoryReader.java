@@ -55,8 +55,8 @@ public class DirectoryReader implements IDirectoryReader {
                         program.setId(i[0]);
                         program.setName(file.getFileName().toString());
                         program.setSize((int)file.toFile().length());
-                        String md5 = org.apache.commons.codec.digest.DigestUtils.md5Hex(new FileInputStream(file.toFile()));
-                        program.setMd5Code(md5);
+                        String SHA = org.apache.commons.codec.digest.DigestUtils.sha256Hex(new FileInputStream(file.toFile()));
+                        program.setMd5Code(SHA);
                         if(dir.endsWith("NewPrograms")){
                             program.setNewVersion(true);
                         }else if(dir.endsWith("OldPrograms")){

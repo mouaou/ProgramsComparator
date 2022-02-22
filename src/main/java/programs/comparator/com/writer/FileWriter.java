@@ -56,12 +56,12 @@ public class FileWriter implements IFileWriter {
 
         //This data needs to be written (Object[])
         Map<Integer, Object[]> data = new TreeMap<Integer, Object[]>();
-        data.put(0, new Object[] {"ID", "Old Program", "Code MD5 OldProg","Taille en octe OldProg",
-                "New Program", "Code MD5 NewProg","Taille en octe NewProg","Old and New areIdentique"
+        data.put(0, new Object[] {"ID", "Ancien Fichier (en prod)", "Signature SHA256","Taille en octe",
+                "Nouveau Fichier (patch)", "Signature SHA256","Taille en octe","Identique"
         });
 
         listProgramsAfterComparaison.forEach(programComparator -> {
-            data.put(programComparator.getId(),new Object[]{programComparator.getId(),
+            data.put(programComparator.getId()+1,new Object[]{programComparator.getId(),
                     programComparator.getOldProgram().getName(),
                     programComparator.getOldProgram().getMd5Code(),
                     programComparator.getOldProgram().getSize(),
