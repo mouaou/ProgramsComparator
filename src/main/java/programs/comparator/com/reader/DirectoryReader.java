@@ -95,9 +95,9 @@ public class DirectoryReader implements IDirectoryReader {
                 .filter(program -> !program.getNewVersion())
                 .collect(Collectors.toList());
 
-        System.out.println("************list new programs***********************");
+        System.out.println("************lister les nouveaux programmes***********************");
         listNewPrograms.forEach(program1 -> System.out.println("*"+program1.toString()+"*"));
-        System.out.println("************list old programs***********************");
+        System.out.println("************lister les anciens programmes***********************");
         listOldPrograms.forEach(program1 -> System.out.println("*"+program1.toString()+"*"));
 
         //compare two lists
